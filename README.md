@@ -58,19 +58,24 @@ We currently support only JSON format.
 
 The following HTTP status codes may be returned in responses from the server:
 
-1. 200 OK
+#### 200 OK
+
 It worked fine!
 
-2. 404 Not Found
+#### 404 Not Found
+
 The resource doesn’t exist.
 	
-3. 401 Not Authorized
+#### 401 Not Authorized
+
 You’re accessing resources without the correct authorization. (Make sure your authorization code is properly working - double check if `auth_token` parameter is present)
 
-4. 422 Unprocessable Entity
+#### 422 Unprocessable Entity
+
 In most cases this is the result of invalid or missing parameters. Make sure the data you’re sending in your request is correct.
 
-5. 500 Internal Server Error
+#### 500 Internal Server Error
+
 Something really went wrong and we could’t handle your request in any way.
 
 ## Sample usage with curl:
