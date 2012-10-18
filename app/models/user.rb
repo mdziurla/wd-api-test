@@ -1,10 +1,18 @@
 class User < ActiveRecord::Base
+  before_save :ensure_authentication_token
+  
   # Include default devise modules. Others available are:
-  # :database_authenticatable, :recoverable, :rememberable
+  # :recoverable, :rememberable, :trackable
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  # :trackable
-  devise  :registerable, :validatable, :token_authenticatable
+  devise  :database_authenticatable, :registerable, :validatable, :token_authenticatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :hobby # :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :first_name, :last_name, :hobby # :remember_me
+  
+  def update_through_api(attrs)
+    allowed_attributes = ['first_name', 'last_name', 'hobby']
+    attrs.reject! {|k,v| !allowed_attributes.include?(k)}
+
+    update_attributes attrs
+  end
 end
