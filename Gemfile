@@ -8,6 +8,16 @@ gem 'jquery-rails'
 
 # gem 'rails3-generators', :group => :development
 
+gem "rspec-rails", :group => [:test, :development]
+
+group :test do
+  gem "factory_girl_rails"
+  # gem "capybara"
+  gem "guard-rspec"
+  gem 'rb-fsevent', '~> 0.9.1'
+  gem "faker", "~> 1.1.2"
+end
+
 group :production do
   gem 'thin', '1.2.11'
 end
